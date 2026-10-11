@@ -1,5 +1,3 @@
-
-
 ## How it works
 
 1. **Observe**: take or choose a photo, add a few words, answer up to three plain-language questions ("Not sure" is a valid answer).
@@ -9,12 +7,12 @@
 
 ## Model
 
-| | |
-|---|---|
-| Model | Gemma 4 **E4B**, instruction-tuned (`gemma4:e4b`) |
-| Why | Accepts images, is Ollama's default Gemma 4 tag, and fits a typical laptop |
-| Context | 128K tokens |
-| License | Apache 2.0 |
+|              |                                                                                                    |
+| ------------ | -------------------------------------------------------------------------------------------------- |
+| Model        | Gemma 4 **E4B**, instruction-tuned (`gemma4:e4b`)                                                  |
+| Why          | Accepts images, is Ollama's default Gemma 4 tag, and fits a typical laptop                         |
+| Context      | 128K tokens                                                                                        |
+| License      | Apache 2.0                                                                                         |
 | Alternatives | `gemma4:e2b` (lighter, weaker vision), `gemma4:26b` (stronger vision, needs roughly 20+ GB memory) |
 
 Set the model with `VITE_GEMMA_MODEL`. Memory guidance (verify on your machine with `ollama ps`): about 10 GB of VRAM or 16 GB of unified memory for E4B. The first request is slow because the model loads.
@@ -39,6 +37,7 @@ Other commands: `npm test` (guardrail unit tests), `npm run dev:mock` (sample da
 To use it on a phone, open the dev server's network URL from the same Wi-Fi. Ollama stays on the computer.
 
 ### Offline behavior
+
 The journal and quests are stored on the device and work with no connection once the app has loaded once. AI analysis needs Ollama reachable, which for a laptop-hosted setup means the same machine or network, but not the internet. The service worker deliberately never caches Ollama requests, so the app cannot pretend the model is available when it is not.
 
 ## How uncertainty is handled
@@ -70,6 +69,10 @@ These rules are covered by `tests/guardrails.test.mjs`.
 - **No per-request cost or account:** run it as often as you like.
 - **Swappable:** changing the model is one environment variable, and the same code can later point at a fine-tuned species model.
 - **Auditable:** the weights are Apache 2.0, so behavior can be inspected and the demo can be reproduced by anyone.
+
+  ## License
+
+  Fieldnotes is released under the MIT License (`LICENSE`). Gemma 4 is separate software under Apache 2.0 and is downloaded by you, not included here. See `THIRD_PARTY_NOTICES.md` for dependencies, fonts, and a note on photo rights.
 
 ## Real-world test
 
